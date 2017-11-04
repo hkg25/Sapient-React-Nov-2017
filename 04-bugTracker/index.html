@@ -73,13 +73,32 @@
 				this.trigger();
 			}
 		}
-		class BugTracker extends React.Component{
+		class BugEdit extends React.Component{
 			constructor(){
 				super();
 				this.onAddNewClick = this.onAddNewClick.bind(this);
 			}
 			onAddNewClick(){
 				let bugName = this.refs.txtBugName.value;
+				this.props.onNewBug(bugName);
+			}
+			render(){
+				return(
+					<section className="edit">
+						<label htmlFor="">Bug Name :</label>
+						<input type="text" ref="txtBugName"/>
+						<input type="button" value="Create New" onClick={this.onAddNewClick} />
+					</section>
+				)
+			}
+		}
+		class BugTracker extends React.Component{
+			constructor(){
+				super();
+				this.newBugAdded = this.newBugAdded.bind(this);
+			}
+			newBugAdded(bugName){
+				
 				this.props.model.addNew(bugName);
 			}
 			render(){
@@ -106,11 +125,7 @@
 							<label htmlFor="">Descending ? :</label>
 							<input type="checkbox" />
 						</section>
-						<section className="edit">
-							<label htmlFor="">Bug Name :</label>
-							<input type="text" ref="txtBugName"/>
-							<input type="button" value="Create New" onClick={this.onAddNewClick} />
-						</section>
+						<BugEdit onNewBug={this.newBugAdded}></BugEdit>
 						<section className="list">
 							<ol>
 								{bugItems}
