@@ -106,6 +106,18 @@
 				)
 			}
 		}
+
+		class BugItem extends React.Component{
+			render(){
+				let {bug} = this.props;
+				return(
+					<li>
+						<span className="bugname">{bug.name}</span>
+						<div className="datetime">[{bug.createdAt.toString()}]</div>
+					</li>
+				)
+			}
+		}
 		class BugTracker extends React.Component{
 			constructor(){
 				super();
@@ -118,11 +130,9 @@
 			render(){
 				let { list } = this.props.model;
 				let bugItems = list.map((bug, index) => (
-					<li key={index}>
-						<span className="bugname">{bug.name}</span>
-						<div className="datetime">[{bug.createdAt.toString()}]</div>
-					</li>
-				))
+					<BugItem bug={bug} key={index} />
+				));
+				
 				return (
 					<div>
 						<section className="stats">
