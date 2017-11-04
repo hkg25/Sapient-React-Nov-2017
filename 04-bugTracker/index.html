@@ -108,12 +108,17 @@
 		}
 
 		class BugItem extends React.Component{
+			onBugNameClick(){
+				let {bug} = this.props;
+				bug.toggle();
+			}
 			render(){
 				let {bug} = this.props;
 				return(
 					<li>
-						<span className="bugname">{bug.name}</span>
+						<span className="bugname" onClick={this.onBugNameClick.bind(this)}>{bug.name}</span>
 						<div className="datetime">[{bug.createdAt.toString()}]</div>
+						<div>[{bug.isClosed.toString()}]</div>
 					</li>
 				)
 			}
@@ -132,7 +137,7 @@
 				let bugItems = list.map((bug, index) => (
 					<BugItem bug={bug} key={index} />
 				));
-				
+
 				return (
 					<div>
 						<section className="stats">
