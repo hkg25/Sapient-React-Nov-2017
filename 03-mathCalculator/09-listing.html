@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math Calculator</title>
+	
+	<script src="react.js"></script>
+	<script src="react-dom.js"></script>
+	<script src="babel.min.js"></script>
+	<script type="text/babel">
+		let ProductList = ({products}) => {
+			/*let items = []
+			for(let index = 0; index < products.length; index++){
+				items.push(<li key={index}>{products[index]}</li>)
+			}*/
+
+			/*
+			let items = [];
+			products.forEach((product, index) => items.push(<li key={index}>{products[index]}</li>));
+			*/
+			let items = products.map((product, index) => (<li key={index}>{products[index]}</li>));
+			
+			return (
+				<ol>
+					{items}
+				</ol>
+			)
+		};	
+		let products = ['Pen', 'Pencil', 'Marker', 'Scribble Pad']
+		ReactDOM.render(<ProductList products={products}/>, document.getElementById('content'));
+	</script>
+</head>
+<body>
+
+	<div id="content"></div>
+</body>
+</html>
